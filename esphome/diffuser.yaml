@@ -1,0 +1,60 @@
+esphome:
+  name: livingroom-diffuser
+  friendly_name: LivingRoom-Diffuser
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+logger:
+
+api:
+  encryption:
+    key: "<Add API Key Here>"
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: "<Add WiFi SSID 2.4GH>"
+  password: "<WiFi Password>"
+
+button:
+  - platform: template
+    name: "Diffuser Power & Timer"
+    on_press:
+      - switch.turn_on: power_timer
+
+  - platform: template
+    name: "Diffuser Light"
+    on_press:
+      - switch.turn_on: light_press
+
+switch:
+  - platform: gpio
+    id: power_timer
+    internal: true
+    restore_mode: ALWAYS_OFF
+    pin:
+      number: GPIO23
+      inverted: true
+      mode:
+        output: true
+        open_drain: true
+    on_turn_on:
+      - delay: 200ms
+      - switch.turn_off: power_timer
+
+  - platform: gpio
+    id: light_press
+    internal: true
+    restore_mode: ALWAYS_OFF
+    pin:
+      number: GPIO32
+      inverted: true
+      mode:
+        output: true
+        open_drain: true
+    on_turn_on:
+      - delay: 200ms
+      - switch.turn_off: light_press
