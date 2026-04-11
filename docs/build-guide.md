@@ -10,7 +10,7 @@ This guide walks through converting an Asakuki diffuser into a fully local Home 
 * Remove screws from the base
 * Carefully separate the bottom housing
 
-📸 Refer to ![Bottom screw holes](./Diffuser%20Pics/1_Bottom%20screw%20holes.jpg)
+📸 Refer to ![Bottom screw holes](./Diffuser%20Pics/1_Bottom%20screw%20holes.JPG)
 
 ---
 
