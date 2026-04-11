@@ -14,6 +14,16 @@ Convert an Asakuki diffuser into a fully local, Home Assistant-controlled smart 
 
 ---
 
+## 🚀 Start Here
+
+1. Follow the [Build Guide](docs/build-guide.md)
+2. Flash ESPHome using [ESPHome Config](esphome/diffuser.yaml)
+3. Set up Home Assistant automation using:
+   - [Automation Guide](docs/home-assistant-automation.md)
+   - [Example YAML](docs/home-assistant-automation-example.yaml)
+ 
+---
+
 ## 🧰 Hardware Used
 
 This project has two parts:
@@ -144,16 +154,6 @@ Power is tapped from the diffuser’s 24V input and stepped down to 5V using a b
 - [ESPHome Config](./esphome/diffuser.yaml)
 - [Build Photos](./docs/Diffuser%20Pics/)
 - [Home Assistant Automation Guide](docs/home-assistant-automation.md)
-
-
-## 🚀 Start Here
-
-1. Follow the [Build Guide](docs/build-guide.md)
-2. Flash ESPHome using [ESPHome Config](esphome/diffuser.yaml)
-3. Set up Home Assistant automation using:
-   - [Automation Guide](docs/home-assistant-automation.md)
-   - [Example YAML](docs/home-assistant-automation-example.yaml)
-  
 
 
 ## 🧠 Important Behavior Notes
