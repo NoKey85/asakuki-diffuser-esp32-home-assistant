@@ -10,7 +10,7 @@ This guide walks through converting an Asakuki diffuser into a fully local Home 
 * Remove screws from the base
 * Carefully separate the bottom housing
 
-📸 Refer to your “1_Bottom screw holes” image
+📸 Refer to ![Bottom screw holes](./Diffuser%20Pics/1_Bottom%20screw%20holes.jpg)
 
 ---
 
@@ -23,7 +23,7 @@ Inside the diffuser you will find:
 * Button PCB (3 buttons)
 * Ribbon cable connecting boards
 
-📸 Refer to image 2_Internal Layout
+📸 Refer to ![Internal Layout](./Diffuser%20Pics/2_Internal%20layout.jpg) 
 
 ---
 
@@ -38,7 +38,7 @@ Locate the **barrel jack** where power enters the device.
   * **Positive (red)**
   * **Negative (black / ground)**
 
-📸 Refer to image 3_Barrel Jack Solder
+📸 Refer to ![Barrel Jack Solder](./Diffuser%20Pics/3_Barrel%20Jack%20Solder.jpg)
 
 ⚠️ Tips:
 
@@ -62,7 +62,8 @@ Wire the buck converter:
 * OUT+ → ESP32 5V / VIN
 * OUT- → ESP32 GND
 
-📸 Refer to images 4_Buck Soldering_Input & 5_Buck Soldering_Output
+📸 Refer to images ![Buck Solering Input](./Diffuser%20Pics/4_Buck%20Soldering_Input.jpg)
+![Buck Soldering Output](./Diffuser%20Pics/4_Buck%20Soldering_Output.jpg)
 
 ---
 
@@ -78,7 +79,7 @@ Wire the buck converter:
 * Ensure solid connections
 
   
-📸 Refer to image 6_Board Testing Underload
+📸 Refer to image ![Buck Soldering Output](./Diffuser%20Pics/6_Board%20Testing%20Underload.jpg)
 
 ---
 
@@ -108,7 +109,7 @@ Each button has:
 * Signal side (top)
 * Ground side (bottom)
 
-📸 Refer to image 7_PCB Board Identify and soldering 
+📸 Refer to image ![PCB Board Identify and soldering](./Diffuser%20Pics/7_PCB%20Board%20Identify%20and%20soldering.jpg)
 
 ---
 
@@ -124,7 +125,7 @@ Each button has:
 
 * All button grounds → ESP32 GND
 
-📸 Refer to image 7_PCB Board Identify and soldering 
+📸 Refer to image ![PCB Board Identify and soldering](./Diffuser%20Pics/7_PCB%20Board%20Identify%20and%20soldering.jpg)
 
 ---
 
@@ -171,7 +172,8 @@ Before closing:
 * Keep buck converter isolated
 * Reassemble housing
 
-📸 Final assembled image 8_Final Layout (No hot glue, but was used later to secure everything).
+📸 Final assembled image ![Final internal Layout](./Diffuser%20Pics/8_Final%20Layout.jpg)
+8_Final Layout (No hot glue, but was used later to secure everything).
 
 ---
 
