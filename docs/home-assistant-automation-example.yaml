@@ -1,0 +1,205 @@
+############################################################
+# ASAKUKI DIFFUSER - HOME ASSISTANT AUTOMATION EXAMPLE
+#
+# This example demonstrates:
+# - Power-based state tracking
+# - Reset script (smart plug power cycle)
+# - Runtime logic (60 / 120 / 180)
+# - Scheduled automation
+#
+# NOTE:
+# You must create helpers manually in Home Assistant:
+# - input_boolean.<room>_diffuser_running_flag
+# - input_datetime.<room>_diffuser_runtime_start
+############################################################
+
+
+############################
+# POWER-BASED STATE TRACKING
+############################
+
+automation:
+
+  - alias: Example Diffuser - Mark Running
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.example_diffuser_plug_power
+        above: 4
+        for:
+          minutes: 1
+    condition:
+      - condition: state
+        entity_id: input_boolean.example_diffuser_running_flag
+        state: "off"
+    action:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.example_diffuser_running_flag
+
+      - service: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.example_diffuser_runtime_start
+        data:
+          datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+
+
+  - alias: Example Diffuser - Mark Off
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.example_diffuser_plug_power
+        below: 4
+        for:
+          minutes: 1
+    action:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.example_diffuser_running_flag
+
+
+############################
+# RESET SCRIPT
+############################
+
+script:
+
+  example_diffuser_reset:
+    alias: Example Diffuser Reset
+    sequence:
+      - service: switch.turn_off
+        target:
+          entity_id: switch.example_diffuser_plug
+
+      - delay:
+          seconds: 2
+
+      - service: switch.turn_on
+        target:
+          entity_id: switch.example_diffuser_plug
+
+      - delay:
+          seconds: 6
+
+
+############################
+# MAIN RUNTIME SCRIPT
+############################
+
+  example_diffuser_set_runtime:
+    alias: Example Diffuser Set Runtime
+    mode: restart
+
+    fields:
+      target_minutes:
+        description: Desired runtime (60 / 120 / 180)
+        example: 120
+
+    variables:
+      running_flag: "{{ is_state('input_boolean.example_diffuser_running_flag','on') }}"
+      elapsed: "{{ states('sensor.example_diffuser_runtime_minutes') | int(0) }}"
+      target: "{{ target_minutes | int(0) }}"
+
+      selected_timer: >
+        {% if target == 120 %}
+          {% if not running_flag %}
+            120
+          {% elif elapsed <= 59 %}
+            120
+          {% elif elapsed <= 120 %}
+            60
+          {% else %}
+            -1
+          {% endif %}
+        {% elif target == 180 %}
+          {% if not running_flag %}
+            180
+          {% elif elapsed <= 29 %}
+            180
+          {% elif elapsed <= 99 %}
+            120
+          {% elif elapsed <= 180 %}
+            60
+          {% else %}
+            -1
+          {% endif %}
+        {% else %}
+          0
+        {% endif %}
+
+      press_count: >
+        {% if selected_timer == 60 %}
+          2
+        {% elif selected_timer == 120 %}
+          3
+        {% elif selected_timer == 180 %}
+          4
+        {% else %}
+          0
+        {% endif %}
+
+    sequence:
+
+      # Over max runtime → reset and leave off
+      - choose:
+          - conditions:
+              - condition: template
+                value_template: "{{ selected_timer == -1 }}"
+            sequence:
+              - service: script.example_diffuser_reset
+              - stop: "Exceeded runtime, leaving off"
+
+      # Reset if already running
+      - choose:
+          - conditions:
+              - condition: template
+                value_template: "{{ running_flag }}"
+            sequence:
+              - service: script.example_diffuser_reset
+
+      # Press button required number of times
+      - repeat:
+          count: "{{ press_count }}"
+          sequence:
+            - service: button.press
+              target:
+                entity_id: button.example_diffuser_power_timer
+            - delay:
+                seconds: 1
+
+      # Optional: Low-water detection
+      - delay:
+          seconds: 20
+
+      - wait_for_trigger:
+          - platform: numeric_state
+            entity_id: sensor.example_diffuser_plug_power
+            below: 4
+            for:
+              seconds: 20
+        timeout:
+          minutes: 3
+        continue_on_timeout: true
+
+      - choose:
+          - conditions:
+              - condition: template
+                value_template: "{{ wait.completed }}"
+            sequence:
+              - service: notify.notify
+                data:
+                  message: "Diffuser stopped early. Check water level."
+
+
+############################
+# EXAMPLE SCHEDULE
+############################
+
+automation:
+
+  - alias: Example Diffuser - Morning Run
+    trigger:
+      - platform: time
+        at: "06:00:00"
+    action:
+      - service: script.example_diffuser_set_runtime
+        data:
+          target_minutes: 120
