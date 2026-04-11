@@ -16,12 +16,115 @@ Convert an Asakuki diffuser into a fully local, Home Assistant-controlled smart 
 
 ## 🧰 Hardware Used
 
-* ESP32 (ESP32 Dev Board)
-* DC-DC Buck Converter (24V → 5V, MP1584EN)
-* Asakuki 500ml Diffuser
-* Basic soldering tools and wiring
-* 22AWG needed for DC-DC --> Buck Converter
-* 28AWG female jumper wire needed 
+This project has two parts:
+- Physical diffuser modification (hardware build)
+- Home Assistant automation (control + monitoring)
+
+---
+
+## 🔧 Build Components (Hardware)
+
+These are required to modify the diffuser and add ESP32 control.
+
+### Core Components
+- **Asakuki Essential Oil Diffuser**
+  - Any model with physical push buttons (power/timer + light)
+
+- **ESP32 Development Board**
+  - 30-pin ESP32 (approx. 51mm x 28mm)
+  - Used for ESPHome integration and button control
+
+### Wiring & Electronics
+- **Wire (16–22 AWG)**
+  - Used to connect ESP32 GPIO pins to diffuser button contacts
+  - Stranded wire is easier to work with than solid core
+
+- **Soldering Kit**
+  - Soldering iron
+  - Solder (rosin core recommended)
+  - Flux (recommended for clean joints)
+
+### Optional but Recommended
+- **Heat shrink tubing or electrical tape**
+  - Insulates solder joints
+
+- **Hot glue or mounting tape**
+  - Secures ESP32 inside diffuser housing
+
+- **USB Power Cable**
+  - Used to power the ESP32
+
+---
+
+## 🧠 Automation Components (Home Assistant)
+
+These are required for reliable control and automation.
+
+### Core Requirements
+- **Home Assistant instance**
+  - Raspberry Pi, VM, or server
+
+- **ESPHome integration**
+  - Used to control ESP32 and expose button entities
+
+---
+
+### Critical Component (Required for Automation Logic)
+
+- **Smart Plug with Power Monitoring**
+  - Zigbee, Z-Wave, or WiFi
+  - MUST support real-time wattage reporting
+
+Example:
+- Minoston Z-Wave plug
+- Third Reality Zigbee plug
+
+This is REQUIRED because:
+- The diffuser does not report its state
+- Power usage is used to determine ON/OFF status
+
+---
+
+### Optional (But Recommended)
+- **Zigbee or Z-Wave Coordinator**
+  - If using Zigbee/Z-Wave smart plugs
+
+- **Home Assistant Notifications**
+  - Mobile app or notification service (e.g., `notify.matt_notifications`)
+
+---
+
+## ⚙️ Why These Components Are Needed
+
+### ESP32
+- Simulates physical button presses
+- Integrates diffuser into Home Assistant
+
+### Smart Plug with Power Monitoring
+- Detects whether diffuser is actually running
+- Enables:
+  - runtime tracking
+  - automation decisions
+  - low-water detection
+
+### Home Assistant + ESPHome
+- Provides:
+  - automation logic
+  - scheduling
+  - state tracking
+  - notifications
+
+---
+
+## 🧩 System Overview
+
+The system works by combining:
+
+- ESP32 → sends button presses  
+- Smart plug → reports power usage  
+- Home Assistant → makes decisions  
+
+This allows reliable automation even though the diffuser itself does not expose a true state. 
 
 ---
 
