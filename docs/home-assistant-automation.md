@@ -1,5 +1,7 @@
 # Home Assistant Automation Guide
 
+Example YAML: [home-assistant-automation-example.yaml](home-assistant-automation-example.yaml)
+
 This project does not expose true discrete controls for mist runtime. The diffuser behaves like a state machine:
 
 - The power/timer button cycles through:
