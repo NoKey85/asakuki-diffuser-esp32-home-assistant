@@ -35,6 +35,13 @@ Power is tapped from the diffuser’s 24V input and stepped down to 5V using a b
 
 ---
 
+## 📁 Project Files
+
+- [Build Guide](./docs/build-guide.md)
+- [ESPHome Config](./esphome/diffuser.yaml)
+- [Build Photos](./docs/Diffuser%20Pics/)
+
+
 ## 🧠 Important Behavior Notes
 
 This diffuser does **not** expose independent controls.
@@ -53,7 +60,7 @@ See: `esphome/diffuser.yaml`
 
 ## 📸 Wiring & Teardown
 
-See: `docs/` folder
+See the [Build Guide](./docs/build-guide.md) and [Build Photos](./docs/Diffuser%20Pics/) for teardown, wiring, and assembly reference.
 
 ---
 
@@ -68,10 +75,10 @@ See: `docs/` folder
 
 ## 🛠️ Status
 
-* ✅ Complete Build-guide (Docs/Build-guide.md)
+* ✅ Complete Build-guide (docs/build-guide.md)
 * ✅ 📸 Build Photos
 
-See the `Docs/Diffuser Pics` folder for full reference images.
+See the `docs/Diffuser Pics` folder for full reference images.
 
 ---
 
