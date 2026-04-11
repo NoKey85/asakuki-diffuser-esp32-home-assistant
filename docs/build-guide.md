@@ -23,7 +23,7 @@ Inside the diffuser you will find:
 * Button PCB (3 buttons)
 * Ribbon cable connecting boards
 
-📸 Refer to ![Internal Layout](./Diffuser%20Pics/2_Internal%20layout.jpg) 
+📸 Refer to ![Internal Layout](./Diffuser%20Pics/2_Internal%20Layout.JPG) 
 
 ---
 
@@ -38,7 +38,7 @@ Locate the **barrel jack** where power enters the device.
   * **Positive (red)**
   * **Negative (black / ground)**
 
-📸 Refer to ![Barrel Jack Solder](./Diffuser%20Pics/3_Barrel%20Jack%20Solder.jpg)
+📸 Refer to ![Barrel Jack Solder](./Diffuser%20Pics/3_Barrel%20Jack%20Solder.JPG)
 
 ⚠️ Tips:
 
@@ -62,8 +62,8 @@ Wire the buck converter:
 * OUT+ → ESP32 5V / VIN
 * OUT- → ESP32 GND
 
-📸 Refer to images ![Buck Solering Input](./Diffuser%20Pics/4_Buck%20Soldering_Input.jpg)
-![Buck Soldering Output](./Diffuser%20Pics/4_Buck%20Soldering_Output.jpg)
+📸 Refer to images ![Buck Solering Input](./Diffuser%20Pics/4_Buck%20Soldering_Input.JPG)
+![Buck Soldering Output](./Diffuser%20Pics/5_Buck%20Soldering_Output.JPG)
 
 ---
 
@@ -125,7 +125,7 @@ Each button has:
 
 * All button grounds → ESP32 GND
 
-📸 Refer to image ![PCB Board Identify and soldering](./Diffuser%20Pics/7_PCB%20Board%20Identify%20and%20soldering.jpg)
+📸 Refer to image ![PCB Board Identify and soldering](./Diffuser%20Pics/7_PCB%20Board%20Identify%20and%20soldering.JPG)
 
 ---
 
