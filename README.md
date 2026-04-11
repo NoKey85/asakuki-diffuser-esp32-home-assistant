@@ -68,8 +68,10 @@ See: `wiring/` folder (coming soon)
 
 ## 🛠️ Status
 
-* ✅ Working build complete
-* 🔄 Second unit will be used for cleaner documentation and photos
+* ✅ Complete Build-guide (Docs/Build-guide.md)
+* ✅ 📸 Build Photos
+
+See the `Docs/Diffuser Pics` folder for full reference images.
 
 ---
 
