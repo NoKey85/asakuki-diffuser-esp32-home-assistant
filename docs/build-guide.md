@@ -109,7 +109,7 @@ Each button has:
 * Signal side (top)
 * Ground side (bottom)
 
-📸 Refer to image ![PCB Board Identify and soldering](./Diffuser%20Pics/7_PCB%20Board%20Identify%20and%20soldering.jpg)
+📸 Refer to image ![PCB Board Identify and soldering](./Diffuser%20Pics/7_PCB%20Board%20Identify%20and%20soldering.JPG)
 
 ---
 
