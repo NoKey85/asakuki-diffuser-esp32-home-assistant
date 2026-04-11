@@ -53,7 +53,7 @@ See: `esphome/diffuser.yaml`
 
 ## 📸 Wiring & Teardown
 
-See: `wiring/` folder (coming soon)
+See: `docs/` folder
 
 ---
 
