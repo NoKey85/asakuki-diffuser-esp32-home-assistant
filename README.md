@@ -40,6 +40,7 @@ Power is tapped from the diffuser’s 24V input and stepped down to 5V using a b
 - [Build Guide](./docs/build-guide.md)
 - [ESPHome Config](./esphome/diffuser.yaml)
 - [Build Photos](./docs/Diffuser%20Pics/)
+- [Home Assistant Automation Guide](docs/home-assistant-automation.md)
 
 
 ## 🧠 Important Behavior Notes
@@ -49,6 +50,7 @@ This diffuser does **not** expose independent controls.
 * Buttons cycle through modes (state machine)
 * Some buttons affect multiple functions
 * Automations should use **button sequences**, not assumed states
+* Because the diffuser buttons cycle through modes instead of exposing direct state, the Home Assistant automation uses smart-plug power monitoring, helper entities, reset scripts, and button-press sequences to reliably control runtime.
 
 ---
 
